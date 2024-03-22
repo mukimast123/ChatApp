@@ -9,8 +9,9 @@ import MainLayout from "../layouts/main";
 import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
 //import Settings from "../pages/dashboard/Settings";
-
+const isLoggedIn=''
 const Loadable = (Component) => (props) => {
+
   return (
     <Suspense fallback={<LoadingScreen />}> 
       <Component {...props} />
@@ -35,7 +36,7 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
-        { path: "app", element: <GeneralApp /> },
+        { path: "app", element: isLoggedIn?<GeneralApp />:<LoginPage/>},
         { path: "settings", element: <Settings /> },
         { path: "group", element: <GroupPage /> },
         { path: "call", element: <CallPage /> },
@@ -49,7 +50,9 @@ export default function Router() {
 }
 
 const GeneralApp = Loadable(
-  lazy(() => import("../pages/dashboard/GeneralApp")),
+  lazy(() => 
+  
+  import("../pages/dashboard/GeneralApp")),
 );
 
 const LoginPage = Loadable(

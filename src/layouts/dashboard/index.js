@@ -13,7 +13,7 @@ if(!isAuthenticated){
   return (
     <Stack direction='row'>
       {/* SideBar */}
-      <SideBar/>
+      {/* <SideBar/> */}
       <Outlet />
     </Stack>
     
